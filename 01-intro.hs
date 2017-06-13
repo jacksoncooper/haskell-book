@@ -1,6 +1,7 @@
 -- http://www.seas.upenn.edu/~cis194/spring13/hw/01-intro.pdf
 
 -- Exercise 1
+
 toDigitsRev :: Integer -> [Integer]
 toDigitsRev n
     | n < 1     = []
@@ -10,8 +11,12 @@ toDigits :: Integer -> [Integer]
 toDigits n = reverse (toDigitsRev n)
 
 -- Exercise 2
--- TODO: Pattern matching to start from right?
+-- TODO: Come back to this one. This solution is kind of unwieldy.
+
 doubleEveryOther :: [Integer] -> [Integer]
-doubleEveryOther [] = []
-doubleEveryOther (x:[]) = [x]
-doubleEveryOther (x:y:zs) = (2 * x) : y : doubleEveryOther zs
+doubleEveryOther xs = reverse (doubleEveryOtherRev (reverse xs))
+
+doubleEveryOtherRev :: [Integer] -> [Integer]
+doubleEveryOtherRev [] = []
+doubleEveryOtherRev (x:[]) = [x]
+doubleEveryOtherRev (x:y:zs) = x : (2 * y) : doubleEveryOtherRev zs
