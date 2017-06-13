@@ -26,3 +26,8 @@ doubleEveryOtherRev (x:y:zs) = x : (2 * y) : doubleEveryOtherRev zs
 sumDigits :: [Integer] -> Integer
 sumDigits [] = 0
 sumDigits (x:xs) = sum (toDigits x) + sumDigits xs
+
+-- Exercise 4
+
+validate :: Integer -> Bool
+validate n = sumDigits (doubleEveryOther (toDigits n)) `mod` 10 == 0
