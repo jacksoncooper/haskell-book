@@ -20,3 +20,9 @@ doubleEveryOtherRev :: [Integer] -> [Integer]
 doubleEveryOtherRev [] = []
 doubleEveryOtherRev (x:[]) = [x]
 doubleEveryOtherRev (x:y:zs) = x : (2 * y) : doubleEveryOtherRev zs
+
+-- Exercise 3
+
+sumDigits :: [Integer] -> Integer
+sumDigits [] = 0
+sumDigits (x:xs) = sum (toDigits x) + sumDigits xs
