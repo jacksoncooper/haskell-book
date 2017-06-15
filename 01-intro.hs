@@ -4,7 +4,7 @@
 
 toDigitsRev :: Integer -> [Integer]
 toDigitsRev n
-    | n < 1     = []
+    | n <= 0     = []
     | otherwise = n `mod` 10 : toDigitsRev (n `div` 10)
 
 toDigits :: Integer -> [Integer]
@@ -30,4 +30,14 @@ sumDigits (x:xs) = sum (toDigits x) + sumDigits xs
 -- Exercise 4
 
 validate :: Integer -> Bool
-validate n = sumDigits (doubleEveryOther (toDigits n)) `mod` 10 == 0
+validate n
+    | n < 0     = False
+    | otherwise = sumDigits (doubleEveryOther (toDigits n)) `mod` 10 == 0
+
+-- Exercise 5
+
+type Peg = String
+type Move = (Peg, Peg)
+hanoi :: Integer -> Peg -> Peg -> Peg -> [Move]
+hanoi 0 _ _ _ = []
+hanoi numberOfDisks startPeg endPeg sparePeg = hanoi (numberOfDisks - 1) startPeg sparePeg endPeg ++ [(startPeg, endPeg)] ++ hanoi (numberOfDisks - 1) sparePeg endPeg startPeg
