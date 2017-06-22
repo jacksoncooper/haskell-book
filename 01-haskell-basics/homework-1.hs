@@ -11,7 +11,7 @@ toDigits :: Integer -> [Integer]
 toDigits n = reverse (toDigitsRev n)
 
 -- Exercise 2
--- TODO: Come back to this one. This solution is kind of unwieldy.
+-- TODO: Come back to this one. This solution is kind of unwieldy. [1]
 
 doubleEveryOther :: [Integer] -> [Integer]
 doubleEveryOther xs = reverse (doubleEveryOtherRev (reverse xs))
@@ -41,3 +41,18 @@ type Move = (Peg, Peg)
 hanoi :: Integer -> Peg -> Peg -> Peg -> [Move]
 hanoi 0 _ _ _ = []
 hanoi numberOfDisks startPeg endPeg sparePeg = hanoi (numberOfDisks - 1) startPeg sparePeg endPeg ++ [(startPeg, endPeg)] ++ hanoi (numberOfDisks - 1) sparePeg endPeg startPeg
+
+-- [1] William's Solution
+
+-- data Parity = Even | Odd
+--
+-- mapAlternating :: (a -> a) -> [a] -> ([a], Parity)
+-- mapAlternating _ [] = ([], Even)
+-- mapAlternating f (x : xs) =
+--     let (xs', parity) = mapAlternating f xs
+--     in case parity of
+--         Even -> (x : xs', Odd)
+--         Odd -> (f x : xs', Even)
+--
+-- doubleEveryOther :: [Integer] -> [Integer]
+-- doubleEveryOther = fst . mapAlternating (* 2)
