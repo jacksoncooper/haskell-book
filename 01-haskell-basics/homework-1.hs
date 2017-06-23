@@ -8,13 +8,13 @@ toDigitsRev n
     | otherwise = n `mod` 10 : toDigitsRev (n `div` 10)
 
 toDigits :: Integer -> [Integer]
-toDigits n = reverse (toDigitsRev n)
+toDigits = reverse . toDigitsRev
 
 -- Exercise 2
 -- TODO: Come back to this one. This solution is kind of unwieldy. [1]
 
 doubleEveryOther :: [Integer] -> [Integer]
-doubleEveryOther xs = reverse (doubleEveryOtherRev (reverse xs))
+doubleEveryOther = reverse . doubleEveryOtherRev . reverse
 
 doubleEveryOtherRev :: [Integer] -> [Integer]
 doubleEveryOtherRev [] = []
@@ -32,7 +32,7 @@ sumDigits (x:xs) = sum (toDigits x) + sumDigits xs
 validate :: Integer -> Bool
 validate n
     | n < 0     = False
-    | otherwise = sumDigits (doubleEveryOther (toDigits n)) `mod` 10 == 0
+    | otherwise = (sumDigits . doubleEveryOther . toDigits) n `mod` 10 == 0
 
 -- Exercise 5
 
