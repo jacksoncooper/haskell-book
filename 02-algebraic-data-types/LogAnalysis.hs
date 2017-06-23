@@ -28,3 +28,8 @@ insert logMessage Leaf = (Node Leaf logMessage Leaf)
 insert logMessage@(LogMessage _ timeStamp _) (Node leftChild nodeLogMessage@(LogMessage _ nodeTimeStamp _) rightChild)
     | timeStamp > nodeTimeStamp = (Node leftChild nodeLogMessage (insert logMessage rightChild))
     | otherwise                 = (Node (insert logMessage leftChild) nodeLogMessage rightChild)
+
+-- Exercise 3
+build :: [LogMessage] -> MessageTree
+build [] = Leaf
+build (x:xs) = insert x $ build xs
