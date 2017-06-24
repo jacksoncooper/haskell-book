@@ -33,3 +33,14 @@ insert logMessage@(LogMessage _ timeStamp _) (Node leftChild nodeLogMessage@(Log
 build :: [LogMessage] -> MessageTree
 build [] = Leaf
 build (x:xs) = insert x $ build xs
+
+-- Exercise 4
+inOrder :: MessageTree -> [LogMessage]
+inOrder Leaf = []
+inOrder (Node leftChild logMessage rightChild) = inOrder leftChild ++ [logMessage] ++ inOrder rightChild
+
+-- Exercise 5
+whatWentWrong :: [LogMessage] -> [String]
+whatWentWrong logMessages =
+    let sortedLogMessages = inOrder $ build logMessages
+    in [message | (LogMessage (Error severity) _ message) <- sortedLogMessages, severity >= 50]
