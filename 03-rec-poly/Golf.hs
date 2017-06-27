@@ -16,3 +16,12 @@ takeEvery n = map snd . filter fst . zip (cycle $ boolList n)
 boolList :: Int -> [Bool]
 boolList 1 = [True]
 boolList n = [False] ++ (boolList $ n - 1)
+
+-- Exercise 2
+
+localMaxima :: [Integer] -> [Integer]
+localMaxima xs = [y | (x, y, z) <- (split xs), y > x && y > z]
+
+split :: [a] -> [(a, a, a)]
+split (x:y:z:xs) = (x,y,z) : (split $ y:z:xs)
+split _ = []
