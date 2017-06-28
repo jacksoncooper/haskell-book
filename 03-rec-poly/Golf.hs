@@ -23,5 +23,29 @@ localMaxima :: [Integer] -> [Integer]
 localMaxima xs = [y | (x, y, z) <- (split xs), y > x && y > z]
 
 split :: [a] -> [(a, a, a)]
-split (x:y:z:xs) = (x,y,z) : (split $ y:z:xs)
+split (x:y:z:zs) = (x,y,z) : (split $ y:z:zs)
 split _ = []
+
+-- Exercise 3
+-- TODO: Fix trailing line break. Clean up.
+
+histogram :: [Integer] -> String
+histogram xs = (reverse . body $ countList [0..9] xs) ++ "\n==========\n0123456789\n"
+
+body :: [Int] -> String
+body xs
+    | filter (> 0) xs == [] = ""
+    | otherwise              = toRow xs ++ "\n" ++ body (map pred xs)
+
+toRow :: [Int] -> String
+toRow [] = []
+toRow (x:xs)
+    | x > 0     = "*" ++ toRow xs
+    | otherwise = " " ++ toRow xs
+
+countList :: (Eq a) => [a] -> [a] -> [Int]
+countList [] _ = []
+countList (x:xs) ys = count x ys : countList xs ys
+
+count :: (Eq a) => a -> [a] -> Int
+count x = length . filter (== x)
