@@ -34,10 +34,10 @@ foldTree :: [a] -> Tree a
 foldTree = populate . foldr insert Leaf
 
 insert :: a -> Tree a -> Tree a
-insert a Leaf = Node 0 Leaf a Leaf
-insert a self@(Node _ leftChild b rightChild)
-    | height leftChild <= height rightChild = (Node (height self) (insert a leftChild) b rightChild)
-    | otherwise                             = (Node (height self) leftChild b (insert a rightChild))
+insert value Leaf = Node 0 Leaf value Leaf
+insert value (Node _ leftChild nodeValue rightChild)
+    | height leftChild <= height rightChild = (Node 0 (insert value leftChild) nodeValue rightChild)
+    | otherwise                             = (Node 0 leftChild nodeValue (insert value rightChild))
 
 height :: Tree a -> Integer
 height Leaf = -1
@@ -54,3 +54,21 @@ xor = foldl (/=) False
 
 map' :: (a -> b) -> [a] -> [b]
 map' f = foldr ((:) . f) []
+
+-- Exercise 4
+-- TODO: This solution does not utilize function composition and partial application.
+
+sieveSundaram :: Integer -> [Integer]
+sieveSundaram = map (\x -> 2 * x + 1) $ filterList [1..n] (oddPrimes n)
+
+toForm :: [(Integer, Integer)] -> [Integer]
+toForm xs = [i + j + 2 * i * j | (i, j) <- xs]
+
+cartProd :: [a] -> [b] -> [(a, b)]
+cartProd xs ys = [(x,y) | x <- xs, y <- ys]
+
+oddPrimes :: Integer -> [Integer]
+oddPrimes n = toForm $ cartProd [1..n] [1..n]
+
+filterList :: (Eq a) => [a] -> [a] -> [a]
+filterList as bs = [a | a <- as, a `notElem` bs]
