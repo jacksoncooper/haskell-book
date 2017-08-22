@@ -56,19 +56,21 @@ map' :: (a -> b) -> [a] -> [b]
 map' f = foldr ((:) . f) []
 
 -- Exercise 4
--- TODO: This solution does not utilize function composition and partial application.
 
 sieveSundaram :: Integer -> [Integer]
-sieveSundaram = map (\x -> 2 * x + 1) $ filterList [1..n] (oddPrimes n)
+sieveSundaram = map (\n -> 2 * n + 1) . uncurry filterList . mapTuple (\n -> [1..n], oddPrimes)
 
 toForm :: [(Integer, Integer)] -> [Integer]
 toForm xs = [i + j + 2 * i * j | (i, j) <- xs]
 
-cartProd :: [a] -> [b] -> [(a, b)]
-cartProd xs ys = [(x,y) | x <- xs, y <- ys]
-
 oddPrimes :: Integer -> [Integer]
 oddPrimes n = toForm $ cartProd [1..n] [1..n]
 
+cartProd :: [a] -> [b] -> [(a, b)]
+cartProd xs ys = [(x,y) | x <- xs, y <- ys]
+
 filterList :: (Eq a) => [a] -> [a] -> [a]
 filterList as bs = [a | a <- as, a `notElem` bs]
+
+mapTuple :: (a -> b, a -> b) -> a -> (b, b)
+mapTuple (f, g) x = (f x, g x)
