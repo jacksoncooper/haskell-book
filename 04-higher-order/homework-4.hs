@@ -58,13 +58,10 @@ map' f = foldr ((:) . f) []
 -- Exercise 4
 
 sieveSundaram :: Integer -> [Integer]
-sieveSundaram = map (\n -> 2 * n + 1) . uncurry filterList . mapTuple (\n -> [1..n], oddPrimes)
+sieveSundaram = map (\n -> 2 * n + 1) . uncurry filterList . mapTuple (\n -> [1..n], \n -> toForm $ cartProd [1..n] [1..n])
 
 toForm :: [(Integer, Integer)] -> [Integer]
 toForm xs = [i + j + 2 * i * j | (i, j) <- xs]
-
-oddPrimes :: Integer -> [Integer]
-oddPrimes n = toForm $ cartProd [1..n] [1..n]
 
 cartProd :: [a] -> [b] -> [(a, b)]
 cartProd xs ys = [(x,y) | x <- xs, y <- ys]
