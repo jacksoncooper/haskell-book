@@ -31,22 +31,19 @@
 
 -- Reading Syntax
 
--- Part 1
+-- 1A. Correct syntax.
+-- 1B. Incorrect syntax, for the same reason as #1 in "Exercises: Syntax
+--     Errors". Correct syntax is: (++) [1, 2, 3] [4, 5, 6].
+-- 1C. Correct syntax.
+-- 1D. Incorrect syntax. Correct syntax is: ["hello" ++ " world"].
+-- 1E. Incorrect syntax. The first argument to (!!) expects a String, not an
+--     Int. Correct syntax is: "hello" !! 4.
+-- 1F. Correct syntax.
+-- 1G. Incorrect syntax. The 'take' function expects an Int and a String.
+--     Correct syntax is: take 4 "lovely".
+-- 1H. Correct syntax.
 
--- A. Correct syntax.
--- B. Incorrect syntax, for the same reason as #1 in "Exercises: Syntax
---    Errors". Correct syntax is: (++) [1, 2, 3] [4, 5, 6].
--- C. Correct syntax.
--- D. Incorrect syntax. Correct syntax is: ["hello" ++ " world"].
--- E. Incorrect syntax. The first argument to (!!) expects a String, not an
---    Int. Correct syntax is: "hello" !! 4.
--- F. Correct syntax.
--- G. Incorrect syntax. The 'take' function expects an Int and a String.
---    Correct syntax is: take 4 "lovely".
--- H. Correct syntax.
-
--- Part 2
-
+-- 2.
 -- A -> D
 -- B -> C
 -- C -> E
@@ -55,38 +52,34 @@
 
 -- Building Functions
 
--- Part 1
+-- 1A. "Curry is awesome" ++ "!"
+-- 1B. "Curry is awesome!" !! 4
+-- 1C. drop 9 "Curry is awesome!"
 
--- A. "Curry is awesome" ++ "!"
--- B. "Curry is awesome!" !! 4
--- C. drop 9 "Curry is awesome!"
-
--- Part 2
-
--- A.
+-- 2A.
 exclaim :: String -> String
 exclaim words = words ++ "!"
 
--- B.
+-- 2B.
 fourthIndex :: [a] -> a
 fourthIndex xs = xs !! 4
 
--- C.
+-- 2C.
 dropNine :: [a] -> [a]
 dropNine xs = drop 9 xs
 
--- Part 3
+-- 3.
 thirdLetter :: String -> Char
 thirdLetter xs = xs !! 2
 
--- Part 4
+-- 4.
 letterIndex :: Int -> Char
 letterIndex x = "Curry is awesome!" !! (x - 1)
 
--- Part 5
+-- 5.
 -- Note: Only intended to be used with the argument "Curry is awesome".
 rvrs :: String -> String
 rvrs xs = drop 9 xs ++ (drop 5 $ take 9 xs) ++ take 5 xs
 
--- Part 6
+-- 6.
 -- Skipped for now.
