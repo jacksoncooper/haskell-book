@@ -46,10 +46,9 @@
 -- 8. The answer is A for the same reason as in #7.
 -- 9. The answer is C. If kessel :: (Ord a, Num b) => a -> b -> a, and
 --    kessel (1 :: Integer) 2, then the type variable a is constrained to an
---    Integer, so the expression returns an Integer. Returning an expression
---    that includes the Ord typeclass would be redundant because an Integer is
---    orderable. I.e., :info Ord yields:
---    instance Ord Integer Defined in ‘integer-gmp-1.0.2.0:GHC.Integer.Type’.
+--    Integer, so the expression returns an Integer. Returning
+--    Ord Integer => Integer would be redundant because Integer has an instance
+--    of the Ord typeclass.
 
 
 -- Exercises: Parametricity p.141
@@ -216,7 +215,7 @@ sing = if (x > y) then fstString x else sndString y
     where x = "Singing"
           y = "Somewhere"
 
--- 2. Minor change: (x < y) on line 213.
+-- 2. Minor change: (x < y) on line 214.
 
 -- 3.
 
@@ -270,3 +269,8 @@ yz = undefined
 
 xform :: (X, Y) -> (Z, Z)
 xform (x, y) = (xz x, yz y)
+
+-- 4.
+
+munge :: (x -> y) -> (y -> (w, z)) -> x -> w
+munge xToY yToWZ x = fst $ yToWZ $ xToY x
