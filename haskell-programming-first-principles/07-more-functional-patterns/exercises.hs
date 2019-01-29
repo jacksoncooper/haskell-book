@@ -163,13 +163,13 @@ hundredsDigit n = remainder
 foldBoolCase :: a -> a -> Bool -> a
 foldBoolCase x y z =
     case z of
-        True  -> x
-        False -> y
+        True  -> y
+        False -> x
 
 foldBoolGuard :: a -> a -> Bool -> a
 foldBoolGuard x y z
-    | z         = x
-    | otherwise = y
+    | z         = y
+    | otherwise = x
 
 -- 3.
 
