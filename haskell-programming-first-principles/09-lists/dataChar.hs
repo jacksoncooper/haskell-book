@@ -1,4 +1,4 @@
--- 9.12 Chapter Exercises, Page 338
+-- Chapter Exercises, Page 338
 
 import Data.Char
 

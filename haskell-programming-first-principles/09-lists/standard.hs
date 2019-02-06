@@ -1,4 +1,4 @@
--- 9.12 Chapter Exercises, Page 341
+-- Chapter Exercises, Page 341
 
 module Standard where
 

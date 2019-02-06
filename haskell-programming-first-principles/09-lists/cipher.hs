@@ -1,4 +1,4 @@
--- 9.12 Chapter Exercises, Page 339
+-- Chapter Exercises, Page 339
 
 module Cipher where
 

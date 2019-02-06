@@ -89,5 +89,5 @@ lessThanOneHundredFibs = filter (\x -> x < 100) fibs
 
 -- 3.
 
-folder = (\x y -> x * succ (x / y)) 
+folder = (\accumulator previous -> accumulator * succ (accumulator `div` previous)) 
 factorial = 1 : scanl folder 1 factorial
