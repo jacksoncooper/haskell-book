@@ -1,6 +1,5 @@
 {-# LANGUAGE NoMonomorphismRestriction #-}
 
-
 -- Exercises: Type Matching p.127
 
 -- 1A -> 2C

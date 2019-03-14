@@ -1,7 +1,5 @@
 -- Chapter Exercises, Page 339
 
-module Cipher where
-
 import Data.Char
 
 caesar :: Int -> String -> String
@@ -24,7 +22,7 @@ shift amount = chr . (`mod` length unicodeSet) . (+ amount) . ord
 -- produce a mapping that isn't one-to-one. Better to cover the entire
 -- Unicode set and pretend this doesn't exist.
 
--- shift :: [Char] -> Int -> Char -> Char
+-- shift :: String -> Int -> Char -> Char
 -- shift set amount =
 --     chr
 --   . (+) setBase
