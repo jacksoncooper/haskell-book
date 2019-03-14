@@ -2,29 +2,38 @@
 
 import Data.Char
 
-data Direction = Left | Right
+data Shift = LeftShift | RightShift
   deriving Eq
 
-vignere :: Direction -> String -> String -> String -> String
-vignere direction set key message = unwords $ zipWith (shiftWord shiftFunction set) (words message) (spreadKey key $ words message)
+vignere :: Shift -> String -> String -> String -> String
+vignere direction set key message =
+  unwords $ zipWith (shiftWord shiftFunction set) (words message) (spreadKey key $ words message)
   where
-    shiftFunction = if direction == Vignere.Right then shiftRightUppercase else shiftLeftUppercase
+    shiftFunction =
+      if direction == RightShift
+      then shiftRightUppercase
+      else shiftLeftUppercase
 
 spreadKey :: String -> [String] -> [String]
-spreadKey "" words = words
-spreadKey key words = go (cycle key) words
+spreadKey "" xs = xs
+spreadKey key xs = go (cycle key) xs
   where
     go _ [] = []
     go key (x:xs) = take (length x) key : go (drop (length x) key) xs
 
 shiftWord :: (Int -> Char -> Char) -> String -> String -> String -> String
-shiftWord shiftFunction set word key = zipWith (shiftLetter shiftFunction set) word key
+shiftWord shiftFunction set word key =
+  zipWith (shiftLetter shiftFunction set) word key
 
 shiftLetter :: (Int -> Char -> Char) -> String -> Char -> Char -> Char
-shiftLetter shiftFunction set character keyCharacter = shiftFunction (shiftAmount set (head set) keyCharacter) character
+shiftLetter shiftFunction set character keyCharacter =
+  shiftFunction (shiftAmount set (head set) keyCharacter) character
     
 shiftAmount :: String -> Char -> Char -> Int
-shiftAmount set origin = (`mod` length set) . (subtract $ ord origin) . ord
+shiftAmount set origin =
+    (`mod` length set)
+  . (subtract $ ord origin)
+  . ord
 
 -- Adapted from previous cipher exercise:
 

@@ -10,29 +10,29 @@ type Digit = Char
 type Presses = Int
 
 phone = Phone
-  [ Button '2' "abc",
-    Button '3' "def",
-    Button '4' "ghi",
-    Button '5' "jkl",
-    Button '6' "mno",
-    Button '7' "pqrs",
-    Button '8' "tuv",
-    Button '9' "wxyz",
-    Button '*' "^",
-    Button '0' "+ ",
-    Button '#' ".," ]
+  [ Button '2' "abc"
+  , Button '3' "def"
+  , Button '4' "ghi"
+  , Button '5' "jkl"
+  , Button '6' "mno"
+  , Button '7' "pqrs"
+  , Button '8' "tuv"
+  , Button '9' "wxyz"
+  , Button '*' "^"
+  , Button '0' "+ "
+  , Button '#' ".," ]
 
 conversation :: [String]
 conversation =
-  [ "Wanna play 20 questions",
-    "Ya",
-    "U 1st haha",
-    "Lol ok. Have u ever tasted alcohol",
-    "Lol ya",
-    "Wow ur cool haha. Ur turn",
-    "Ok. Do u think I am pretty Lol",
-    "Lol ya",
-    "Just making sure rofl ur turn" ]
+  [ "Wanna play 20 questions"
+  , "Ya"
+  , "U 1st haha"
+  , "Lol ok. Have u ever tasted alcohol"
+  , "Lol ya"
+  , "Wow ur cool haha. Ur turn"
+  , "Ok. Do u think I am pretty Lol"
+  , "Lol ya"
+  , "Just making sure rofl ur turn" ]
 
 -- Part 1
 
