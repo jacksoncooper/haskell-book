@@ -1,7 +1,7 @@
+-- Chapter Exercises, p.454
+
 import Data.Char (isLetter, toLower, isUpper)
 import Data.List (elemIndex)
-
--- Chapter Exercises, p.454
 
 data Phone = Phone [Button]
 data Button = Button Char String

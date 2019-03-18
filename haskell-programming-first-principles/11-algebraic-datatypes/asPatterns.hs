@@ -1,6 +1,6 @@
-import Data.Char (toUpper, isSpace)
-
 -- Chapter Exercises, p.452
+
+import Data.Char (toUpper, isSpace)
 
 -- 1.
 
