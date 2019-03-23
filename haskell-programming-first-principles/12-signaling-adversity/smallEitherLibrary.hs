@@ -1,4 +1,4 @@
--- Chapter Exercises, p.482
+-- Chapter Exercises, Page 482
 
 import Data.Maybe (catMaybes)
 
@@ -40,4 +40,4 @@ either' _ g (Right y) = g y
 -- 6.
 
 eitherMaybe'' :: (b -> c) -> Either a b -> Maybe c
-eitherMaybe'' f = either' (\_ -> Nothing) (Just . f)
+eitherMaybe'' f = either' (const Nothing) (Just . f)

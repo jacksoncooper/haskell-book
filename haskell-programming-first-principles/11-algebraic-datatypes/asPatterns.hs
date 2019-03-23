@@ -1,4 +1,4 @@
--- Chapter Exercises, p.452
+-- Chapter Exercises, Page 452
 
 import Data.Char (toUpper, isSpace)
 

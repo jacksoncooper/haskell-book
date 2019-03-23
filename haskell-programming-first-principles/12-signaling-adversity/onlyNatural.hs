@@ -1,4 +1,4 @@
--- Chapter Exercises, p.480
+-- Chapter Exercises, Page 480
 
 -- Well I guess it's only life, it's only natural
 -- https://www.youtube.com/watch?v=fweNLKBCh5A

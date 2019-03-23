@@ -1,9 +1,10 @@
--- Chapter Exercises, p.457
+-- Chapter Exercises, Page 457
 
 -- 1.
 
-data Expression = Literal Integer
-                | Addition Expression Expression
+data Expression =
+    Literal Integer
+  | Addition Expression Expression
 
 evaluate :: Expression -> Integer
 evaluate (Literal integer) = integer

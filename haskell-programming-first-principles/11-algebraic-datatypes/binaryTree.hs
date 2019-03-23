@@ -1,4 +1,4 @@
--- Binary Trees, p.444
+-- Binary Trees, Page 444
 
 data BinaryTree a =
     Leaf

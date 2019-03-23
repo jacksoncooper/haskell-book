@@ -1,4 +1,4 @@
--- Chapter Exercises, p.454
+-- Chapter Exercises, Page 454
 
 import Data.Char (isLetter, toLower, isUpper)
 import Data.List (elemIndex)

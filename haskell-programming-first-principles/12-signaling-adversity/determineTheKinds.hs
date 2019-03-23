@@ -1,4 +1,4 @@
--- Chapter Exercises, p.477
+-- Chapter Exercises, Page 477
 
 -- 1. The kind of 'a' in id :: a -> a is *. For any application of the 'id'
 --    function, such as id "whoa", the type variable 'a' is only capable of

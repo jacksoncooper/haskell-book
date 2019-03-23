@@ -1,4 +1,4 @@
--- Chapter Exercises, p.478
+-- Chapter Exercises, Page 478
 
 import Data.Char (isSpace, toLower)
 import Data.Maybe (fromMaybe)

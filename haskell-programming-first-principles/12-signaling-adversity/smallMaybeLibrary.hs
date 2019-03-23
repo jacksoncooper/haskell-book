@@ -1,4 +1,4 @@
--- Chapter Exercises, p.480
+-- Chapter Exercises, Page 480
 
 -- 1.
 

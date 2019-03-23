@@ -1,4 +1,4 @@
--- Chapter Exercises, p.486
+-- Chapter Exercises, Page 486
 
 data BinaryTree a =
     Leaf
