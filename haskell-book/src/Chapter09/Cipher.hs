@@ -1,6 +1,6 @@
 -- Chapter Exercises, Pages 339 and 529
 
-module Cipher where
+module Chapter09.Cipher where
 
 import Data.Char
 import System.IO

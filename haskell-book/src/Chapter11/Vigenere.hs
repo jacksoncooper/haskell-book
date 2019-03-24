@@ -1,10 +1,11 @@
 -- Chapter Exercises, Page 451 and 529
 
-module Vignere where
+module Chapter11.Vigenere where
 
-import Cipher (shiftLeftUppercase, shiftRightUppercase, ShiftFunction)
 import Data.Char
 import System.IO
+
+import Chapter09.Cipher (shiftLeftUppercase, shiftRightUppercase, ShiftFunction)
 
 spreadKey :: String -> [String] -> [String]
 spreadKey "" xs = xs

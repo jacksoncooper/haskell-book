@@ -1,0 +1,20 @@
+name:                haskell-book
+version:             0.1.0.0
+-- synopsis:
+-- description:
+homepage:            https://github.com/jacksoncooper/learning-haskell
+-- license:
+-- license-file:
+author:              Jackson Cooper
+maintainer:          jacksoncooper@users.noreply.github.com
+copyright:           2019 Jackson Cooper
+category:            Web
+build-type:          Simple
+cabal-version:       >=1.10
+-- extra-source-files:
+
+library
+  hs-source-dirs:      src
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+                     , hspec
