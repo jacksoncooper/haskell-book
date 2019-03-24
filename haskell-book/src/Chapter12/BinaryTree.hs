@@ -1,5 +1,7 @@
 -- Chapter Exercises, Page 486
 
+module Chapter12.BinaryTree where
+
 data BinaryTree a =
     Leaf
   | Node (BinaryTree a) a (BinaryTree a)

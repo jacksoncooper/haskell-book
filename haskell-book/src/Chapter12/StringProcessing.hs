@@ -1,5 +1,7 @@
 -- Chapter Exercises, Page 478
 
+module Chapter12.StringProcessing where
+
 import Data.Char (isSpace, toLower)
 import Data.Maybe (fromMaybe)
 

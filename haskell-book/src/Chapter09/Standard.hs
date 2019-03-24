@@ -1,5 +1,7 @@
 -- Chapter Exercises, Page 341
 
+module Chapter09.Standard where
+
 -- 1.
 
 myOr :: [Bool] -> Bool

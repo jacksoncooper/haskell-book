@@ -1,4 +1,6 @@
-module Chapter14.Addition where
+-- Exercises, Page 542
+
+module Chapter14.Intermission where
 
 import Test.Hspec
 

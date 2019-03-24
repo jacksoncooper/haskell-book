@@ -1,3 +1,5 @@
+module Chapter07.Exercises where
+
 -- Exercises: Grab Bag p.226
 
 -- 1. A, B, C, and D are equivalent.

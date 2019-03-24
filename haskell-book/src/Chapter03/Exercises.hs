@@ -1,3 +1,5 @@
+module Chapter03.Exercises where
+
 -- Exercises: Scope p.74
 
 -- 1. The variable 'y' is in scope for the variable 'z' because it is defined

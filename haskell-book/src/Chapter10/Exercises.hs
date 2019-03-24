@@ -1,3 +1,5 @@
+module Chapter10.Exercises where
+
 import Data.Time
 
 -- Exercises: Understanding Folds p.365

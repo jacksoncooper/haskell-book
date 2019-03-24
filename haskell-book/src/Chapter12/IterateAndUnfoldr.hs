@@ -1,5 +1,7 @@
 -- Chapter Exercises, Page 485
 
+module Chapter12.IterateAndUnfoldr where
+
 -- 1.
 
 myIterate :: (a -> a) -> a -> [a]

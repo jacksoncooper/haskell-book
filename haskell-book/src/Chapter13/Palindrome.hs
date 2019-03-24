@@ -1,5 +1,7 @@
 -- Chapter Exercises, Page 529
 
+module Chapter13.Palindrome where
+
 import Control.Monad
 import Data.Char (isLetter, toLower)
 import System.Exit (exitSuccess)

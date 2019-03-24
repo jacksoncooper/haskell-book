@@ -1,3 +1,5 @@
+module Chapter09.Exercises where
+
 import Data.Bool (bool)
 
 -- myHead p.304

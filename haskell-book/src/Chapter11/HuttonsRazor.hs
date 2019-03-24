@@ -1,5 +1,7 @@
 -- Chapter Exercises, Page 457
 
+module Chapter11.HuttonsRazor where
+
 -- 1.
 
 data Expression =

@@ -1,3 +1,5 @@
+module Chapter10.Notes where
+
 -- Implementation of foldr. Foldr is head recursive:
 
 myFoldr :: (a -> b -> b) -> b -> [a] -> b

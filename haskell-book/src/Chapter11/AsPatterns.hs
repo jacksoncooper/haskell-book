@@ -1,5 +1,7 @@
 -- Chapter Exercises, Page 452
 
+module Chapter11.AsPatterns where
+
 import Data.Char (toUpper, isSpace)
 
 -- 1.

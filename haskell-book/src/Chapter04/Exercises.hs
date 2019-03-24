@@ -1,3 +1,5 @@
+module Chapter04.Exercises where
+
 -- Exercises: Mood Swing p.90
 
 data Mood = Blah | Woot deriving Show

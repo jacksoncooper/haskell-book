@@ -1,5 +1,7 @@
 -- Chapter Exercises, Page 454
 
+module Chapter11.Phone where
+
 import Data.Char (isLetter, toLower, isUpper)
 import Data.List (elemIndex)
 

@@ -1,3 +1,5 @@
+module Chapter06.Exercises where
+
 -- Exercises: Eq Instances p.180
 
 -- 1.

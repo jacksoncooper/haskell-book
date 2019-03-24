@@ -1,3 +1,5 @@
+module Chapter02.Exercises where
+
 -- Exercises: Comprehension Check p.34
 
 -- 1. Using GHCI version 8.4.4, function declarations do not need to be

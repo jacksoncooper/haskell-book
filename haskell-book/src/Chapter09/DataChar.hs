@@ -1,5 +1,7 @@
 -- Chapter Exercises, Page 338
 
+module Chapter09.DataChar where
+
 import Data.Char
 
 -- 1. isUpper :: Char -> Bool

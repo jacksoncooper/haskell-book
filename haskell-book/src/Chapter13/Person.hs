@@ -1,5 +1,7 @@
 -- Chapter Exercises, Page 530
 
+module Chapter13.Person where
+
 type Name = String
 type Age = Integer
 

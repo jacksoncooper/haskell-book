@@ -1,5 +1,7 @@
 {-# LANGUAGE NoMonomorphismRestriction #-}
 
+module Chapter05.Exercises where
+
 -- Exercises: Type Matching p.127
 
 -- 1A -> 2C

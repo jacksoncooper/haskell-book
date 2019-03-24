@@ -1,3 +1,5 @@
+module Chapter11.Exercises where
+
 import Data.Int
 
 -- Exercises: Dog Types p.396

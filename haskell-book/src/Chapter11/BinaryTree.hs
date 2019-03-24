@@ -1,4 +1,6 @@
--- Binary Trees, Page 444
+-- Exercises, Page 444
+
+module Chapter11.BinaryTree where
 
 data BinaryTree a =
     Leaf

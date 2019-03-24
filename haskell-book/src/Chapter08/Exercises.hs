@@ -1,3 +1,5 @@
+module Chapter08.Exercises where
+
 import Data.List (intersperse)
 
 -- Intermission: Exercise p.280

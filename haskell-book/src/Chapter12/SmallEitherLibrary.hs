@@ -1,5 +1,7 @@
 -- Chapter Exercises, Page 482
 
+module Chapter12.SmallEitherLibrary where
+
 import Data.Maybe (catMaybes)
 
 -- 1.

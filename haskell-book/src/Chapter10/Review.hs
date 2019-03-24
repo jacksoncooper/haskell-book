@@ -1,5 +1,7 @@
 -- Chapter Exercises, Page 379
 
+module Chapter10.Review where
+
 -- 1A.
 
 threePermutation :: [a] -> [b] -> [c] -> [(a, b, c)]

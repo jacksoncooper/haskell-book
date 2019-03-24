@@ -1,4 +1,6 @@
--- Intermission, Page 502
+-- Exercises, Page 502
+
+module Chapter13.Intermission where
 
 -- 1. The functions 'forever' and 'when'.
 

@@ -1,5 +1,7 @@
 -- Chapter Exercises, Page 480
 
+module Chapter12.SmallMaybeLibrary where
+
 -- 1.
 
 isJust :: Maybe a -> Bool

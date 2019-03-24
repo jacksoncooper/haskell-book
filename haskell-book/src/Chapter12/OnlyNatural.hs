@@ -3,6 +3,8 @@
 -- Well I guess it's only life, it's only natural
 -- https://www.youtube.com/watch?v=fweNLKBCh5A
 
+module Chapter12.OnlyNatural where
+
 data Natural = Zero | Successor Natural
   deriving (Eq, Show)
 
