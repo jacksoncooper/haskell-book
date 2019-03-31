@@ -30,6 +30,7 @@ capitalizeWords = map (\word -> (word, capitalizeWord word)) . words
 -- 3.
 
 capitalizeWord :: String -> String
+capitalizeWord "" = ""
 capitalizeWord (x:xs) = toUpper x : xs
 
 -- 4.
