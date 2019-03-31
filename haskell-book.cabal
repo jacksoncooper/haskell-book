@@ -11,7 +11,7 @@ copyright:           2019 Jackson Cooper
 category:            Web
 build-type:          Simple
 cabal-version:       >=1.10
--- extra-source-files:
+extra-source-files:  data/dict.txt
 
 library
   hs-source-dirs:      src
@@ -19,3 +19,4 @@ library
   build-depends:       base >= 4.7 && < 5
                      , hspec
                      , QuickCheck
+                     , random
