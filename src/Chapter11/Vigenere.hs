@@ -5,16 +5,16 @@ module Chapter11.Vigenere where
 import Data.Char
 import System.IO
 
-import Chapter09.Cipher (shiftLeftUppercase, shiftRightUppercase, ShiftFunction)
+import Chapter09.Caesar (Set, ShiftFunction, shiftLeftUppercase, shiftRightUppercase)
 
-spreadKey :: String -> [String] -> [String]
-spreadKey "" xs = xs
-spreadKey key xs = go (cycle key) xs
+spreadKey :: Set -> String -> [String] -> [String]
+spreadKey set "" xs = spreadKey set [head set] xs
+spreadKey _ key xs = go (cycle key) xs
   where
     go _ [] = []
     go key (x:xs) = take (length x) key : go (drop (length x) key) xs
 
-shiftWord :: ShiftFunction -> String -> String -> String -> String
+shiftWord :: ShiftFunction -> Set -> String -> String -> String
 shiftWord shiftFunction set key word =
   zipWith shiftLetter key word
   where
@@ -24,9 +24,9 @@ shiftWord shiftFunction set key word =
 shiftAmount :: Char -> Char -> Int
 shiftAmount origin = (subtract $ ord origin) . ord
 
-vignere :: ShiftFunction -> String -> String -> String -> String
+vignere :: ShiftFunction -> Set -> String -> String -> String
 vignere shiftFunction set key message =
-  unwords $ zipWith (shiftWord shiftFunction set) (spreadKey key messageWords) messageWords
+  unwords $ zipWith (shiftWord shiftFunction set) (spreadKey set key messageWords) messageWords
   where
     messageWords = words message
 

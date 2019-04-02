@@ -1,10 +1,11 @@
 -- Chapter Exercises, Pages 339 and 529
 
-module Chapter09.Cipher where
+module Chapter09.Caesar where
 
 import Data.Char
 import System.IO
 
+type Set = String
 type ShiftFunction = Int -> Char -> Char
 
 -- Note: The 'shift' function can produce mappings that aren't one-to-one if a
@@ -16,7 +17,7 @@ type ShiftFunction = Int -> Char -> Char
 -- shift amount = chr . (`mod` length unicodeSet) . (+ amount) . ord
 --   where unicodeSet = enumFrom $ chr 0
 
-shift :: String -> ShiftFunction
+shift :: Set -> ShiftFunction
 shift set amount =
     chr
   . (+) origin

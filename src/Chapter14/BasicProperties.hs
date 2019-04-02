@@ -3,6 +3,7 @@
 module Chapter14.BasicProperties where
 
 import Data.List (sort)
+import Test.Hspec
 import Test.QuickCheck
 
 -- 1.
@@ -103,86 +104,126 @@ squareIdentityProperty :: (Eq a, Floating a) => a -> Bool
 squareIdentityProperty x = squareIdentity x == x
 
 main :: IO ()
-main = do
+main = hspec $ do
   -- 1.
 
-  putStrLn "Testing halfIdentity."
-  quickCheck (halfIdentityProperty :: Float -> Bool)
-  quickCheck (halfIdentityProperty :: Double -> Bool)
+  describe "halfIdentityProperty" $ do
+    it "Testing halfIdentityProperty :: Float -> Bool." $ do
+      property (halfIdentityProperty :: Float -> Bool)
+    it "Testing halfIdentityProperty :: Double -> Bool." $ do
+      property (halfIdentityProperty :: Double -> Bool)
 
   -- 2.
 
-  putStrLn "Testing listOrdered."
-  quickCheck (listOrderedProperty :: [Float] -> Bool)
-  quickCheck (listOrderedProperty :: [Double] -> Bool)
-  quickCheck (listOrderedProperty :: [Int] -> Bool)
-  quickCheck (listOrderedProperty :: [Integer] -> Bool)
-  quickCheck (listOrderedProperty :: [Char] -> Bool)
-  quickCheck (listOrderedProperty :: [String] -> Bool)
+  describe "listOrderedProperty" $ do
+    it "Testing listOrderedProperty :: [Float] -> Bool." $ do
+      property (listOrderedProperty :: [Float] -> Bool)
+    it "Testing listOrderedProperty :: [Double] -> Bool." $ do
+      property (listOrderedProperty :: [Double] -> Bool)
+    it "Testing listOrderedProperty :: [Int] -> Bool." $ do
+      property (listOrderedProperty :: [Int] -> Bool)
+    it "Testing listOrderedProperty :: [Integer] -> Bool." $ do
+      property (listOrderedProperty :: [Integer] -> Bool)
+    it "Testing listOrderedProperty :: [Char] -> Bool." $ do
+      property (listOrderedProperty :: [Char] -> Bool)
+    it "Testing listOrderedProperty :: [String] -> Bool." $ do
+      property (listOrderedProperty :: [String] -> Bool)
 
   -- 3.
 
-  putStrLn "Testing plusAssociativeProperty."
-  -- quickCheck (plusAssociativeProperty :: Float -> Float -> Float -> Bool)
-  -- quickCheck (plusAssociativeProperty :: Double -> Double -> Double -> Bool)
-  quickCheck (plusAssociativeProperty :: Int -> Int -> Int -> Bool)
-  quickCheck (plusAssociativeProperty :: Integer -> Integer -> Integer -> Bool)
+  describe "plusAssociativeProperty" $ do
+    it "Testing plusAssociativeProperty :: Float -> Float -> Float -> Bool." $ do
+      property (plusAssociativeProperty :: Float -> Float -> Float -> Bool)
+    it "Testing plusAssociativeProperty :: Double -> Double -> Double -> Bool." $ do
+      property (plusAssociativeProperty :: Double -> Double -> Double -> Bool)
+    it "Testing plusAssociativeProperty :: Int -> Int -> Int -> Bool." $ do
+      property (plusAssociativeProperty :: Int -> Int -> Int -> Bool)
+    it "Testing plusAssociativeProperty :: Integer -> Integer -> Integer -> Bool." $ do
+      property (plusAssociativeProperty :: Integer -> Integer -> Integer -> Bool)
 
-  putStrLn "Testing plusCommutativeProperty."
-  quickCheck (plusCommutativeProperty :: Float -> Float -> Bool)
-  quickCheck (plusCommutativeProperty :: Double -> Double -> Bool)
-  quickCheck (plusCommutativeProperty :: Int -> Int -> Bool)
-  quickCheck (plusCommutativeProperty :: Integer -> Integer -> Bool)
+  describe "plusCommutativeProperty" $ do
+    it "Testing plusCommutativeProperty :: Float -> Float -> Bool." $ do
+      property (plusCommutativeProperty :: Float -> Float -> Bool)
+    it "Testing plusCommutativeProperty :: Double -> Double -> Bool." $ do
+      property (plusCommutativeProperty :: Double -> Double -> Bool)
+    it "Testing plusCommutativeProperty :: Int -> Int -> Bool." $ do
+      property (plusCommutativeProperty :: Int -> Int -> Bool)
+    it "Testing plusCommutativeProperty :: Integer -> Integer -> Bool." $ do
+      property (plusCommutativeProperty :: Integer -> Integer -> Bool)
 
   -- 4.
 
-  putStrLn "Testing timesAssociativeProperty."
-  -- quickCheck (timesAssociativeProperty :: Float -> Float -> Float -> Bool)
-  -- quickCheck (timesAssociativeProperty :: Double -> Double -> Double -> Bool)
-  -- quickCheck (timesAssociativeProperty :: Int -> Int -> Int -> Bool)
-  -- quickCheck (timesAssociativeProperty :: Integer -> Integer -> Integer -> Bool)
+  describe "timesAssociativeProperty" $ do
+    it "Testing timesAssociativeProperty :: Float -> Float -> Float -> Bool." $ do
+      property (timesAssociativeProperty :: Float -> Float -> Float -> Bool)
+    it "Testing timesAssociativeProperty :: Double -> Double -> Double -> Bool." $ do
+      property (timesAssociativeProperty :: Double -> Double -> Double -> Bool)
+    it "Testing timesAssociativeProperty :: Int -> Int -> Int -> Bool." $ do
+      property (timesAssociativeProperty :: Int -> Int -> Int -> Bool)
+    it "Testing timesAssociativeProperty :: Integer -> Integer -> Integer -> Bool." $ do
+      property (timesAssociativeProperty :: Integer -> Integer -> Integer -> Bool)
 
-  putStrLn "Testing timesCommutativeProperty."
-  quickCheck (timesCommutativeProperty :: Float -> Float -> Bool)
-  quickCheck (timesCommutativeProperty :: Double -> Double -> Bool)
-  quickCheck (timesCommutativeProperty :: Int -> Int -> Bool)
-  quickCheck (timesCommutativeProperty :: Integer -> Integer -> Bool)
+  describe "timesCommutativeProperty" $ do
+    it "Testing timesCommutativeProperty :: Float -> Float -> Bool." $ do
+      property (timesCommutativeProperty :: Float -> Float -> Bool)
+    it "Testing timesCommutativeProperty :: Double -> Double -> Bool." $ do
+      property (timesCommutativeProperty :: Double -> Double -> Bool)
+    it "Testing timesCommutativeProperty :: Int -> Int -> Bool." $ do
+      property (timesCommutativeProperty :: Int -> Int -> Bool)
+    it "Testing timesCommutativeProperty :: Integer -> Integer -> Bool." $ do
+      property (timesCommutativeProperty :: Integer -> Integer -> Bool)
 
   -- 5.
 
-  -- From StackOverflow answer by Yuuri: https://bit.ly/2I2Wq67.
-  -- newtype NonZero a = NonZero {getNonZero :: a}
-     -- Defined in ‘Test.QuickCheck.Modifiers’
+  -- -- From StackOverflow answer by Yuuri: https://bit.ly/2I2Wq67.
+  -- -- newtype NonZero a = NonZero {getNonZero :: a}
+  --    -- Defined in ‘Test.QuickCheck.Modifiers’
 
-  putStrLn "Testing quotRemProperty."
-  quickCheck (quotRemProperty :: NonZero Int -> NonZero Int -> Bool)
-  quickCheck (quotRemProperty :: NonZero Integer -> NonZero Integer -> Bool)
+  describe "quotRemProperty" $ do
+    it "Testing quotRemProperty :: NonZero Int -> NonZero Int -> Bool." $ do
+      property (quotRemProperty :: NonZero Int -> NonZero Int -> Bool)
+    it "Testing quotRemProperty :: NonZero Integer -> NonZero Integer -> Bool." $ do
+      property (quotRemProperty :: NonZero Integer -> NonZero Integer -> Bool)
 
-  putStrLn "Testing divModProperty."
-  quickCheck (divModProperty :: NonZero Int -> NonZero Int -> Bool)
-  quickCheck (divModProperty :: NonZero Integer -> NonZero Integer -> Bool)
+  describe "divModProperty" $ do
+    it "Testing divModProperty :: NonZero Int -> NonZero Int -> Bool." $ do
+      property (divModProperty :: NonZero Int -> NonZero Int -> Bool)
+    it "Testing divModProperty :: NonZero Integer -> NonZero Integer -> Bool." $ do
+      property (divModProperty :: NonZero Integer -> NonZero Integer -> Bool)
 
   -- 6.
 
-  putStrLn "Testing exponentAssociativeProperty."
-  -- quickCheck (exponentAssociativeProperty :: Float -> Int -> Int -> Bool)
-  -- quickCheck (exponentAssociativeProperty :: Float -> Integer -> Integer -> Bool)
-  -- quickCheck (exponentAssociativeProperty :: Double -> Int -> Int -> Bool)
-  -- quickCheck (exponentAssociativeProperty :: Double -> Integer -> Integer -> Bool)
+  describe "exponentAssociativeProperty" $ do
+    it "Testing exponentAssociativeProperty :: Float -> Int -> Int -> Bool." $ do
+      property (exponentAssociativeProperty :: Float -> Int -> Int -> Bool)
+    it "Testing exponentAssociativeProperty :: Float -> Integer -> Integer -> Bool." $ do
+      property (exponentAssociativeProperty :: Float -> Integer -> Integer -> Bool)
+    it "Testing exponentAssociativeProperty :: Double -> Int -> Int -> Bool." $ do
+      property (exponentAssociativeProperty :: Double -> Int -> Int -> Bool)
+    it "Testing exponentAssociativeProperty :: Double -> Integer -> Integer -> Bool." $ do
+      property (exponentAssociativeProperty :: Double -> Integer -> Integer -> Bool)
 
-  putStrLn "Testing exponentCommutativeProperty."
-  -- quickCheck (exponentCommutativeProperty :: Int -> Int -> Bool)
-  -- quickCheck (exponentCommutativeProperty :: Integer -> Integer -> Bool)
+  describe "exponentCommutativeProperty" $ do
+    it "Testing exponentCommutativeProperty :: Int -> Int -> Bool." $ do
+      property (exponentCommutativeProperty :: Int -> Int -> Bool)
+    it "Testing exponentCommutativeProperty :: Integer -> Integer -> Bool." $ do
+      property (exponentCommutativeProperty :: Integer -> Integer -> Bool)
 
   -- 7.
 
-  putStrLn "Testing reverseProperty."
-  quickCheck (reverseProperty :: [Float] -> Bool)
-  quickCheck (reverseProperty :: [Double] -> Bool)
-  quickCheck (reverseProperty :: [Int] -> Bool)
-  quickCheck (reverseProperty :: [Integer] -> Bool)
-  quickCheck (reverseProperty :: [Char] -> Bool)
-  quickCheck (reverseProperty :: [String] -> Bool)
+  describe "reverseProperty" $ do
+    it "Testing reverseProperty :: [Float] -> Bool." $ do
+      property (reverseProperty :: [Float] -> Bool)
+    it "Testing reverseProperty :: [Double] -> Bool." $ do
+      property (reverseProperty :: [Double] -> Bool)
+    it "Testing reverseProperty :: [Int] -> Bool." $ do
+      property (reverseProperty :: [Int] -> Bool)
+    it "Testing reverseProperty :: [Integer] -> Bool." $ do
+      property (reverseProperty :: [Integer] -> Bool)
+    it "Testing reverseProperty :: [Char] -> Bool." $ do
+      property (reverseProperty :: [Char] -> Bool)
+    it "Testing reverseProperty :: [String] -> Bool." $ do
+      property (reverseProperty :: [String] -> Bool)
 
   -- 8.
 
@@ -190,45 +231,66 @@ main = do
   -- data Fun a b = ???
      -- Defined in ‘Test.QuickCheck.Function’
 
-  putStrLn "Testing functionApplicationProperty."
-  quickCheck (functionApplicationProperty :: Fun Integer Integer -> Integer -> Bool)
-  quickCheck (functionApplicationProperty :: Fun String Integer -> String -> Bool)
-  quickCheck (functionApplicationProperty :: Fun [String] String -> [String] -> Bool)
+  describe "functionApplicationProperty" $ do
+    it "Testing functionApplicationProperty :: Fun Integer Integer -> Integer -> Bool." $ do
+      property (functionApplicationProperty :: Fun Integer Integer -> Integer -> Bool)
+    it "Testing functionApplicationProperty :: Fun String Integer -> String -> Bool." $ do
+      property (functionApplicationProperty :: Fun String Integer -> String -> Bool)
+    it "Testing functionApplicationProperty :: Fun [String] String -> [String] -> Bool." $ do
+      property (functionApplicationProperty :: Fun [String] String -> [String] -> Bool)
 
-  putStrLn "Testing functionCompositionProperty."
-  quickCheck (functionCompositionProperty :: Fun Integer Integer -> Fun String Integer -> String -> Bool)
-  quickCheck (functionCompositionProperty :: Fun String Integer -> Fun [String] String -> [String] -> Bool)
+  describe "functionCompositionProperty" $ do
+    it "Testing functionCompositionProperty :: Fun Integer Integer -> Fun String Integer -> String -> Bool." $ do
+      property (functionCompositionProperty :: Fun Integer Integer -> Fun String Integer -> String -> Bool)
+    it "Testing functionCompositionProperty :: Fun String Integer -> Fun [String] String -> [String] -> Bool." $ do
+      property (functionCompositionProperty :: Fun String Integer -> Fun [String] String -> [String] -> Bool)
 
   -- 9.
 
-  putStrLn "Testing appendProperty."
-  quickCheck (appendProperty :: [Double] -> [Double] -> Bool)  
-  quickCheck (appendProperty :: [Integer] -> [Integer] -> Bool)
-  quickCheck (appendProperty :: [String] -> [String] -> Bool)
+  describe "appendProperty" $ do
+    it "Testing appendProperty :: [Double] -> [Double] -> Bool." $ do
+      property (appendProperty :: [Double] -> [Double] -> Bool)
+    it "Testing appendProperty :: [Integer] -> [Integer] -> Bool." $ do
+      property (appendProperty :: [Integer] -> [Integer] -> Bool)
+    it "Testing appendProperty :: [String] -> [String] -> Bool." $ do
+      property (appendProperty :: [String] -> [String] -> Bool)
 
-  putStrLn "Testing concatProperty."
-  quickCheck (concatProperty :: [[Double]] -> Bool)
-  quickCheck (concatProperty :: [[Integer]] -> Bool)
-  quickCheck (concatProperty :: [[String]] -> Bool)
+  describe "concatProperty" $ do
+    it "Testing concatProperty :: [[Double]] -> Bool." $ do
+      property (concatProperty :: [[Double]] -> Bool)
+    it "Testing concatProperty :: [[Integer]] -> Bool." $ do
+      property (concatProperty :: [[Integer]] -> Bool)
+    it "Testing concatProperty :: [[String]] -> Bool." $ do
+      property (concatProperty :: [[String]] -> Bool)
 
   -- 10.
 
-  putStrLn "Testing takeProperty."
-  -- quickCheck (takeProperty :: Int -> [Double] -> Bool)
-  -- quickCheck (takeProperty :: Int -> [Integer] -> Bool)
-  -- quickCheck (takeProperty :: Int -> [String] -> Bool)
-  
+  describe "takeProperty" $ do
+    it "Testing takeProperty :: Int -> [Double] -> Bool." $ do
+      property (takeProperty :: Int -> [Double] -> Bool)
+    it "Testing takeProperty :: Int -> [Integer] -> Bool." $ do
+      property (takeProperty :: Int -> [Integer] -> Bool)
+    it "Testing takeProperty :: Int -> [String] -> Bool." $ do
+      property (takeProperty :: Int -> [String] -> Bool)
+
   -- 11.
 
-  putStrLn "Testing roundTripProperty."
-  quickCheck (roundTripProperty :: Double -> Bool)
-  quickCheck (roundTripProperty :: Integer -> Bool)
-  quickCheck (roundTripProperty :: String -> Bool)
-  quickCheck (roundTripProperty :: [Integer] -> Bool)
-  quickCheck (roundTripProperty :: [String] -> Bool)
+  describe "roundTripProperty" $ do
+    it "Testing roundTripProperty :: Double -> Bool." $ do
+      property (roundTripProperty :: Double -> Bool)
+    it "Testing roundTripProperty :: Integer -> Bool." $ do
+      property (roundTripProperty :: Integer -> Bool)
+    it "Testing roundTripProperty :: String -> Bool." $ do
+      property (roundTripProperty :: String -> Bool)
+    it "Testing roundTripProperty :: [Integer] -> Bool." $ do
+      property (roundTripProperty :: [Integer] -> Bool)
+    it "Testing roundTripProperty :: [String] -> Bool." $ do
+      property (roundTripProperty :: [String] -> Bool)
 
   -- 12.
 
-  putStrLn "Testing squareIdentityProperty."
-  -- quickCheck (squareIdentityProperty :: Float -> Bool)
-  -- quickCheck (squareIdentityProperty :: Double -> Bool)
+  describe "squareIdentityProperty" $ do
+    it "Testing squareIdentityProperty :: Float -> Bool." $ do
+      property (squareIdentityProperty :: Float -> Bool)
+    it "Testing squareIdentityProperty :: Double -> Bool." $ do
+      property (squareIdentityProperty :: Double -> Bool)

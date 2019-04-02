@@ -12,6 +12,7 @@ newtype WordList = WordList [String]
   deriving (Eq, Show)
 
 data Puzzle = Puzzle String [Maybe Char] [Char]
+  deriving Eq
 
 instance Show Puzzle where
   show (Puzzle _ discovered guessed) =
