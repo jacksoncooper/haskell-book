@@ -1,6 +1,6 @@
 -- Chapter Exercises, Page 482
 
-module Chapter12.SmallEitherLibrary where
+module Chapter12.Either where
 
 import Data.Maybe (catMaybes)
 

@@ -1,6 +1,6 @@
 -- Chapter Exercises, Page 480
 
-module Chapter12.SmallMaybeLibrary where
+module Chapter12.Maybe where
 
 -- 1.
 

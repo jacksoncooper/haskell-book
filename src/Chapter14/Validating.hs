@@ -1,6 +1,6 @@
 -- Chapter Exercises, Page 569
 
-module Chapter14.NumberToWord where
+module Chapter14.Validating where
 
 import Test.Hspec
 

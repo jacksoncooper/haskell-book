@@ -1,6 +1,6 @@
 -- Chapter Exercises, Page 457
 
-module Chapter11.HuttonsRazor where
+module Chapter11.Huttons where
 
 -- 1.
 

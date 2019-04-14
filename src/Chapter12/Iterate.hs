@@ -1,6 +1,6 @@
 -- Chapter Exercises, Page 485
 
-module Chapter12.IterateAndUnfoldr where
+module Chapter12.Iterate where
 
 -- 1.
 

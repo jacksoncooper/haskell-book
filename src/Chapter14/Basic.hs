@@ -1,6 +1,6 @@
 -- Chapter Exercises, Page 570
 
-module Chapter14.BasicProperties where
+module Chapter14.Basic where
 
 import Data.List (sort)
 import Test.Hspec
@@ -40,7 +40,7 @@ plusCommutativeProperty x y = x + y == y + x
 -- 4.
 
 timesAssociativeProperty :: (Eq a, Num a) => a -> a -> a -> Bool
-timesAssociativeProperty x y z = x * (y * z) == (x * y) + z
+timesAssociativeProperty x y z = x * (y * z) == (x * y) * z
 
 timesCommutativeProperty :: (Eq a, Num a) => a -> a -> Bool
 timesCommutativeProperty x y = x * y == y * x
