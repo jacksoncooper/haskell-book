@@ -6,6 +6,8 @@ import Data.Monoid (All, Any, Sum)
 import Test.Hspec
 import Test.QuickCheck
 
+import Chapter15.Properties
+
 -- 1.
 
 data Trivial = Trivial
@@ -13,6 +15,9 @@ data Trivial = Trivial
 
 instance Semigroup Trivial where
   (<>) Trivial Trivial = Trivial
+
+instance Monoid Trivial where
+  mempty = Trivial
 
 instance Arbitrary Trivial where
   arbitrary = return Trivial
@@ -24,6 +29,9 @@ newtype Identity a = Identity a
 
 instance Semigroup a => Semigroup (Identity a) where
   (<>) (Identity x) (Identity x') = Identity $ x <> x'
+
+instance Monoid a => Monoid (Identity a) where
+  mempty = Identity mempty
 
 instance Arbitrary a => Arbitrary (Identity a) where
   arbitrary = do
@@ -37,6 +45,9 @@ data Two a b = Two a b
 
 instance (Semigroup a, Semigroup b) => Semigroup (Two a b) where
   (<>) (Two x y) (Two x' y') = Two (x <> x') (y <> y')
+
+instance (Monoid a, Monoid b) => Monoid (Two a b) where
+  mempty = Two mempty mempty  
 
 instance (Arbitrary a, Arbitrary b) => Arbitrary (Two a b) where
   arbitrary = do
@@ -52,6 +63,9 @@ data Three a b c = Three a b c
 instance (Semigroup a, Semigroup b, Semigroup c) => Semigroup (Three a b c) where
   (<>) (Three x y z) (Three x' y' z') = Three (x <> x') (y <> y') (z <> z')
 
+instance Monoid BoolConj where
+  mempty = BoolConj True
+
 instance (Arbitrary a, Arbitrary b, Arbitrary c) => Arbitrary (Three a b c) where
   arbitrary = do
     a <- arbitrary
@@ -66,6 +80,9 @@ data Four a b c d = Four a b c d
 
 instance (Semigroup a, Semigroup b, Semigroup c, Semigroup d) => Semigroup (Four a b c d) where
   (<>) (Four w x y z) (Four w' x' y' z') = Four (w <> w') (x <> x') (y <> y') (z <> z')
+
+instance Monoid BoolDisj where
+  mempty = BoolDisj False
 
 instance (Arbitrary a, Arbitrary b, Arbitrary c, Arbitrary d) => Arbitrary (Four a b c d) where
   arbitrary = do
@@ -83,6 +100,9 @@ newtype BoolConj = BoolConj Bool
 instance Semigroup BoolConj where
   (<>) (BoolConj bool) (BoolConj bool') = BoolConj $ bool && bool'
 
+instance Monoid b => Monoid (Combine a b) where
+  mempty = Combine $ \_ -> mempty
+
 instance Arbitrary BoolConj where
   arbitrary = elements [BoolConj True, BoolConj False]
 
@@ -94,6 +114,9 @@ newtype BoolDisj = BoolDisj Bool
 instance Semigroup BoolDisj where
   (<>) (BoolDisj bool) (BoolDisj bool') = BoolDisj $ bool || bool'
 
+instance Monoid (Compose a) where
+  mempty = Compose id
+
 instance Arbitrary BoolDisj where
   arbitrary = elements [BoolDisj True, BoolDisj False]
 
@@ -103,10 +126,10 @@ data Or a b = Fst a | Snd b
   deriving (Eq, Show)
 
 instance Semigroup (Or a b) where
-  (<>) (Fst x) (Fst y) = Fst y
-  (<>) (Fst x) (Snd y) = Snd y
-  (<>) (Snd x) (Fst y) = Snd x
-  (<>) (Snd x) (Snd y) = Snd y
+  (<>) (Fst _) (Fst y) = Fst y
+  (<>) (Fst _) (Snd y) = Snd y
+  (<>) (Snd x) (Fst _) = Snd x
+  (<>) (Snd _) (Snd y) = Snd y
 
 instance (Arbitrary a, Arbitrary b) => Arbitrary (Or a b) where
   arbitrary = do
@@ -144,10 +167,10 @@ data Validation a b = Failure' a | Success' b
   deriving (Eq, Show)
 
 instance Semigroup a => Semigroup (Validation a b) where
-  (<>) (Success' success) (Success' success') = Success' success
-  (<>) (Success' success) (Failure' failure)  = Success' success
-  (<>) (Failure' failure) (Success' success)  = Success' success
-  (<>) (Failure' failure) (Failure' failure') = Failure' $ failure <> failure'
+  (<>) (Success' s) (Success' _)  = Success' s
+  (<>) (Success' s) (Failure' _)  = Success' s
+  (<>) (Failure' _) (Success' s)  = Success' s
+  (<>) (Failure' f) (Failure' f') = Failure' $ f <> f'
 
 instance (Arbitrary a, Arbitrary b) => Arbitrary (Validation a b) where
   arbitrary = do
@@ -156,16 +179,6 @@ instance (Arbitrary a, Arbitrary b) => Arbitrary (Validation a b) where
     elements [Failure' a, Success' b]
 
 -- Properties.
-
-semigroupAssociativeProperty :: (Eq a, Semigroup a) => a -> a -> a -> Bool
-semigroupAssociativeProperty x y z = (x <> y) <> z == x <> (y <> z)
-
-semigroupAssociativeProperty' :: (Semigroup a, Eq c) => a -> a -> a -> (a -> b -> c) -> b -> Bool
-semigroupAssociativeProperty' s s' s'' f x =
-  functionEqualityProperty (f $ (s <> s') <> s'') (f $ s <> (s' <> s'')) x
-
-functionEqualityProperty :: (Eq b) => (a -> b) -> (a -> b) -> a -> Bool
-functionEqualityProperty f g x = f x == g x
 
 combineAssociativeProperty :: (Eq b, Semigroup b) => Blind (Combine a b) -> Blind (Combine a b) -> Blind (Combine a b) -> a -> Bool
 combineAssociativeProperty (Blind c) (Blind c') (Blind c'') x =
@@ -177,8 +190,8 @@ composeAssociativeProperty (Blind c) (Blind c') (Blind c'') x =
 
 -- Testing.
 
-main :: IO ()
-main = hspec $ do
+test_semigroups :: IO ()
+test_semigroups = hspec $ do
   describe "semigroupAssociativeProperty" $ do
     -- 1.
 

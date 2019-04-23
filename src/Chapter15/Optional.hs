@@ -19,4 +19,4 @@ instance Semigroup a => Monoid (Optional a) where
 instance Arbitrary a => Arbitrary (Optional a) where
   arbitrary = do
     a <- arbitrary
-    elements [Nada, Only a]
+    frequency [(1, return Nada), (3, return $ Only a)]

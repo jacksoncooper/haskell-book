@@ -5,6 +5,8 @@ module Chapter15.Invalid where
 import Test.Hspec
 import Test.QuickCheck
 
+import Chapter15.Properties
+
 data Bull = Fools | Twoo
   deriving (Eq, Show)
 
@@ -17,20 +19,11 @@ instance Monoid Bull where
 instance Arbitrary Bull where
   arbitrary = elements [Fools, Twoo]
 
-monoidAssociativeProperty :: (Eq a, Monoid a) => a -> a -> a -> Bool
-monoidAssociativeProperty x y z = (x <> y) <> z == x <> (y <> z)
-
-monoidLeftIdentityProperty :: (Eq a, Monoid a) => a -> Bool
-monoidLeftIdentityProperty x = mempty <> x == x
-
-monoidRightIdentityProperty :: (Eq a, Monoid a) => a -> Bool
-monoidRightIdentityProperty x = x <> mempty == x
-
-main :: IO ()
-main = hspec $ do
-  describe "monoidAssociativeProperty" $ do
-    it "Testing monoidAssociativeProperty :: Bull -> Bull -> Bull -> Bool." $ do
-      property (monoidAssociativeProperty :: Bull -> Bull -> Bull -> Bool)
+test_invalid_monoid :: IO ()
+test_invalid_monoid = hspec $ do
+  describe "semigroupAssociativeProperty" $ do
+    it "Testing semigroupAssociativeProperty :: Bull -> Bull -> Bull -> Bool." $ do
+      property (semigroupAssociativeProperty :: Bull -> Bull -> Bull -> Bool)
 
   describe "monoidLeftIdentityProperty" $ do
     it "Testing monoidLeftIdentityProperty :: Bull -> Bool." $ do

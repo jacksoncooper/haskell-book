@@ -5,14 +5,8 @@ module Chapter15.First where
 import Test.Hspec
 import Test.QuickCheck
 
-import Chapter15.Invalid
-  (
-    monoidAssociativeProperty
-  , monoidLeftIdentityProperty
-  , monoidRightIdentityProperty
-  )
-
 import Chapter15.Optional
+import Chapter15.Properties
 
 newtype First' a = First' {getFirst' :: Optional a}
   deriving (Eq, Show)
@@ -30,11 +24,11 @@ instance Arbitrary a => Arbitrary (First' a) where
     a <- arbitrary
     return $ First' a
 
-main :: IO ()
-main = hspec $ do
-  describe "monoidAssociativeProperty" $ do
-    it "Testing monoidAssociativeProperty :: First' (Optional String) -> First' (Optional String) -> First' (Optional String) -> Bool." $ do
-      property (monoidAssociativeProperty :: First' (Optional String) -> First' (Optional String) -> First' (Optional String) -> Bool)
+test_first_monoid :: IO ()
+test_first_monoid = hspec $ do
+  describe "semigroupAssociativeProperty" $ do
+    it "Testing semigroupAssociativeProperty :: First' (Optional String) -> First' (Optional String) -> First' (Optional String) -> Bool." $ do
+      property (semigroupAssociativeProperty :: First' (Optional String) -> First' (Optional String) -> First' (Optional String) -> Bool)
 
   describe "monoidLeftIdentityProperty" $ do
     it "Testing monoidLeftIdentityProperty :: First' (Optional String) -> Bool." $ do
