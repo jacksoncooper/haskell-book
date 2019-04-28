@@ -3,7 +3,7 @@ module Chapter15.Properties where
 -- Semigroup.
 
 semigroupAssociativeProperty :: (Eq a, Semigroup a) => a -> a -> a -> Bool
-semigroupAssociativeProperty x y z = (x <> y) <> z == x <> (y <> z)
+semigroupAssociativeProperty s s' s'' = (s <> s') <> s'' == s <> (s' <> s'')
 
 semigroupAssociativeProperty' :: (Semigroup a, Eq c) => a -> a -> a -> (a -> b -> c) -> b -> Bool
 semigroupAssociativeProperty' s s' s'' f x =
@@ -12,10 +12,10 @@ semigroupAssociativeProperty' s s' s'' f x =
 -- Monoid.
 
 monoidLeftIdentityProperty :: (Eq a, Monoid a) => a -> Bool
-monoidLeftIdentityProperty x = mempty <> x == x
+monoidLeftIdentityProperty m = mempty <> m == m
 
 monoidRightIdentityProperty :: (Eq a, Monoid a) => a -> Bool
-monoidRightIdentityProperty x = x <> mempty == x
+monoidRightIdentityProperty m = m <> mempty == m
 
 monoidLeftIdentityProperty' :: (Eq c, Monoid a) => a -> (a -> b -> c) -> b -> Bool
 monoidLeftIdentityProperty' m f x = functionEqualityProperty (f $ mempty <> m) (f m) x

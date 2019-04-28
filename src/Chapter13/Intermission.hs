@@ -1,7 +1,5 @@
 -- Exercises, Page 502
 
-module Chapter13.Intermission where
-
 -- 1. The functions 'forever' and 'when'.
 
 -- 2. 'Data.Bits' and 'Database.Blacktip.Types'.
