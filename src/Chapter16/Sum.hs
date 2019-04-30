@@ -34,5 +34,5 @@ instance Functor (Sum a) where
 
 --    (?) I'm not sure if this is the correct wording. The type that changes
 --        isn't actually part of the Functor instance. It's referred to in the
---        pattern matching that goes on in the instance declaration, but it is
+--        pattern matching that goes on in the instance declaration, but it's
 --        not a part of the instance itself.

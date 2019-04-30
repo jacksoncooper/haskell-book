@@ -165,3 +165,26 @@ lms = [ave, n, w]
 -- (.) :: (Num b, Num b', Functor f') => (f' b' -> f' b) -> (f' a' -> f' b') -> f' a' -> f' b
 
 -- separate = fc . fc' :: (Functor f', Num b) => f' a' -> f' b
+
+
+-- Functors in datatypes:
+
+data Wrap f a = Wrap (f a)
+  deriving (Eq, Show)
+
+-- instance Functor (Wrap f) where
+--   fmap f (Wrap fa) = Wrap (f fa)
+
+-- fmap :: (a -> b) -> f a -> f b
+-- fmap :: (a -> b) -> (Wrap f) a -> (Wrap f) b
+
+-- This doesn't work because we need to return a Wrap that contains something of
+-- type 'b'. We're applying 'f :: a -> b' to a type constructor of kind '* -> *'
+-- that wraps the 'a' value that we need to transform.
+
+instance Functor f => Functor (Wrap f) where
+  fmap f (Wrap fa) = Wrap (fmap f fa)
+
+-- This works. The only way we can access the 'a' within the wrapper is to
+-- constrain the wrapper to a Functor, or some other typeclass that lets us
+-- access the thing inside the wrapper.
