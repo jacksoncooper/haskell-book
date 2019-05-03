@@ -25,5 +25,5 @@ monoidRightIdentityProperty' m f x = functionEqualityProperty (f $ m <> mempty) 
 
 -- Functions.
 
-functionEqualityProperty :: (Eq b) => (a -> b) -> (a -> b) -> a -> Bool
+functionEqualityProperty :: Eq b => (a -> b) -> (a -> b) -> a -> Bool
 functionEqualityProperty f g x = f x == g x

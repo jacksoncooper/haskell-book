@@ -180,6 +180,10 @@ instance (Arbitrary a, Arbitrary b) => Arbitrary (Validation a b) where
 
 -- Properties.
 
+-- The following properties only generate one 'a' to approximate function
+-- equality. I'm not sure how to hold the generated functions constant and test
+-- against multiple values of 'a'. Maybe come back to this after Monads?
+
 combineAssociativeProperty :: (Eq b, Semigroup b) => Blind (Combine a b) -> Blind (Combine a b) -> Blind (Combine a b) -> a -> Bool
 combineAssociativeProperty (Blind c) (Blind c') (Blind c'') x =
   semigroupAssociativeProperty' c c' c'' unCombine x

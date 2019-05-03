@@ -191,6 +191,20 @@ instance Arbitrary a => Arbitrary (TalkToMe a) where
     sToA <- arbitrary
     elements [Halt, Print s a, Read sToA]
 
+talkToMeEquality :: Eq a => TalkToMe a -> TalkToMe a -> String -> Bool
+talkToMeEquality Halt Halt _ = True
+talkToMeEquality (Print s a) (Print s' a') _ = s == s' && a == a'
+talkToMeEquality (Read sToA) (Read sToA') s = functionEqualityProperty sToA sToA' s
+talkToMeEquality _ _ _ = False
+
+-- Properties.
+
+talkToMeIdentityProperty :: Eq a => Blind (TalkToMe a) -> String -> Bool
+talkToMeIdentityProperty (Blind t) s = functorIdentityProperty' t (\t' t'' -> talkToMeEquality t' t'' s)
+
+talkToMeComposeProperty :: Eq a => Blind (TalkToMe a) -> Fun a a -> Fun a a -> String -> Bool
+talkToMeComposeProperty (Blind t) f g s = functorComposeProperty' t f g (\t' t'' -> talkToMeEquality t' t'' s)
+
 -- Testing.
 
 test_functors :: IO ()
@@ -241,8 +255,10 @@ test_functors = hspec $ do
     it "Testing functorIdentityProperty :: GoatLord Integer -> Bool." $ do
       property (functorIdentityProperty :: GoatLord Integer -> Bool)
 
-    -- 11. Not sure how to validate without producing an IO Bool. There is no
-    --     Property instance for IO Bool.
+    -- 11.
+
+    it "Testing talkToMeIdentityProperty :: Blind (TalkToMe Integer) -> String -> Bool." $ do
+      property (talkToMeIdentityProperty :: Blind (TalkToMe Integer) -> String -> Bool)
 
   describe "functorComposeProperty" $ do
     -- 1.
@@ -295,5 +311,7 @@ test_functors = hspec $ do
     it "Testing functorComposeProperty :: GoatLord Integer -> Fun Integer Integer -> Fun Integer Integer -> Bool." $ do
       property (functorComposeProperty :: GoatLord Integer -> Fun Integer Integer -> Fun Integer Integer -> Bool)
 
-    -- 11. Not sure how to validate without producing an IO Bool. There is no
-    --     Property instance for IO Bool.
+    -- 11.
+
+    it "Testing talkToMeComposeProperty :: Blind (TalkToMe Integer) -> Fun Integer Integer -> Fun Integer Integer -> String -> Bool." $ do
+      property (talkToMeComposeProperty :: Blind (TalkToMe Integer) -> Fun Integer Integer -> Fun Integer Integer -> String -> Bool)
