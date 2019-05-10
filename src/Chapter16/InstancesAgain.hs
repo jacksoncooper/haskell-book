@@ -207,8 +207,8 @@ talkToMeComposeProperty (Blind t) f g s = functorComposeProperty' t f g (\t' t''
 
 -- Testing.
 
-test_functors :: IO ()
-test_functors = hspec $ do
+testFunctors :: IO ()
+testFunctors = hspec $ do
   describe "functorIdentityProperty" $ do
     -- 1.
 

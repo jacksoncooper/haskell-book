@@ -194,8 +194,8 @@ composeAssociativeProperty (Blind c) (Blind c') (Blind c'') x =
 
 -- Testing.
 
-test_semigroups :: IO ()
-test_semigroups = hspec $ do
+testSemigroups :: IO ()
+testSemigroups = hspec $ do
   describe "semigroupAssociativeProperty" $ do
     -- 1.
 

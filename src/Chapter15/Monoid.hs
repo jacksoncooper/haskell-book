@@ -1,5 +1,7 @@
 -- Chapter Exercises, Page 609
 
+module Chapter15.Monoid where
+
 import Data.Monoid (Any, Sum)
 import Test.Hspec
 import Test.QuickCheck
@@ -56,8 +58,8 @@ memRightIdentityProperty (Blind m) x = monoidRightIdentityProperty' m runMem x
 mem :: Mem Int String
 mem = Mem $ \s -> ("hi", s + 1)
 
-mem_sanity :: IO ()
-mem_sanity = do
+memSanity :: IO ()
+memSanity = do
   let rmzero  = runMem mempty 0
       rmleft  = runMem (mem <> mempty) 0
       rmright = runMem (mempty <> mem) 0
@@ -70,8 +72,8 @@ mem_sanity = do
 
 -- Testing.
 
-test_monoids :: IO ()
-test_monoids = hspec $ do
+testMonoids :: IO ()
+testMonoids = hspec $ do
   describe "semigroupAssociativeProperty" $ do
     -- 8.
 

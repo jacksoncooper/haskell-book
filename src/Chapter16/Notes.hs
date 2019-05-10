@@ -1,3 +1,5 @@
+module Chapter16.Notes where
+
 -- Constants:
 
 replaceWithP :: a -> Char

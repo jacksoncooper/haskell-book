@@ -24,8 +24,8 @@ instance Arbitrary a => Arbitrary (First' a) where
     a <- arbitrary
     return $ First' a
 
-test_first_monoid :: IO ()
-test_first_monoid = hspec $ do
+testFirstMonoid :: IO ()
+testFirstMonoid = hspec $ do
   describe "semigroupAssociativeProperty" $ do
     it "Testing semigroupAssociativeProperty :: First' (Optional String) -> First' (Optional String) -> First' (Optional String) -> Bool." $ do
       property (semigroupAssociativeProperty :: First' (Optional String) -> First' (Optional String) -> First' (Optional String) -> Bool)

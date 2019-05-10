@@ -1,8 +1,5 @@
 -- Chapter Exercises, Page 480
 
--- Well I guess it's only life, it's only natural
--- https://www.youtube.com/watch?v=fweNLKBCh5A
-
 module Chapter12.Natural where
 
 data Natural = Zero | Successor Natural
@@ -20,3 +17,7 @@ integerToNatural integer =
   where
     go 0 = Zero
     go integer = Successor (go $ integer - 1)
+
+-- Well I guess it's only life, it's only natural
+-- We all spend a little while going down the rabbit hole
+-- https://www.youtube.com/watch?v=fweNLKBCh5A

@@ -1,5 +1,7 @@
 -- Page 623
 
+module Chapter16.Kinds where
+
 -- 1. The kind of 'a' in 'f :: a -> a' is '*', because the kind of (->) is
 --    '* -> * -> *'. To construct a complete type, (->) takes two type constants,
 --    i.e., two type arguments of kind '*'. In the type signature, each of those

@@ -19,8 +19,8 @@ instance Monoid Bull where
 instance Arbitrary Bull where
   arbitrary = elements [Fools, Twoo]
 
-test_invalid_monoid :: IO ()
-test_invalid_monoid = hspec $ do
+testInvalidMonoid :: IO ()
+testInvalidMonoid = hspec $ do
   describe "semigroupAssociativeProperty" $ do
     it "Testing semigroupAssociativeProperty :: Bull -> Bull -> Bull -> Bool." $ do
       property (semigroupAssociativeProperty :: Bull -> Bull -> Bull -> Bool)

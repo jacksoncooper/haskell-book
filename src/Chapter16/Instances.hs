@@ -118,8 +118,8 @@ instance (Arbitrary a, Arbitrary b) => Arbitrary (Four' a b) where
 
 -- Testing.
 
-test_functors :: IO ()
-test_functors = hspec $ do
+testFunctors :: IO ()
+testFunctors = hspec $ do
   describe "functorIdentityProperty" $ do
     -- 1.
 
