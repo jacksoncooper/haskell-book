@@ -62,8 +62,8 @@ instance Arbitrary a => Arbitrary (List a) where
 instance Eq a => EqProp (List a) where
   (=-=) = eq
 
-myValue :: Integer
-myValue = undefined
+myList :: List (Integer, Integer, Integer)
+myList = undefined
 
 testListApplicative :: IO ()
-testListApplicative = quickBatch $ applicative $ Cons (myValue, myValue, myValue) Nil
+testListApplicative = quickBatch $ applicative myList

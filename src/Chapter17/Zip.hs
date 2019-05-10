@@ -32,8 +32,8 @@ instance Eq a => EqProp (ZipList' a) where
       ys' = let (ZipList' l) = ys
             in take 3000 l
 
-myValue :: Integer
-myValue = undefined
+myZipList :: ZipList' (Integer, Integer, Integer)
+myZipList = undefined
 
 testZipListApplicative :: IO ()
-testZipListApplicative = quickBatch $ applicative $ ZipList' [(myValue, myValue, myValue)]
+testZipListApplicative = quickBatch $ applicative myZipList
