@@ -92,7 +92,7 @@ instance (Arbitrary a, Arbitrary b, Arbitrary c, Arbitrary d) => Arbitrary (Four
     b <- arbitrary
     c <- arbitrary
     d <- arbitrary
-    return $ Four a b c d 
+    return $ Four a b c d
 
 -- 7.
 

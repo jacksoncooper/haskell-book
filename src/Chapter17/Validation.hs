@@ -19,14 +19,6 @@ instance Monoid e => Applicative (Validation e) where
   pure = Success'
   (<*>) = applyValidation
 
-applyValidation :: Monoid e => Validation e (a -> b) -> Validation e a -> Validation e b
-applyValidation (Success' f) (Success' a) = Success' $ f a
-applyValidation (Success' _) (Failure' e) = Failure' e
-applyValidation (Failure' e) (Success' _) = Failure' e
-applyValidation (Failure' e) (Failure' e') = Failure' $ e <> e'
-
--- Testing.
-
 instance (Arbitrary e, Arbitrary a) => Arbitrary (Validation e a) where
   arbitrary = do
     e <- arbitrary
@@ -35,6 +27,14 @@ instance (Arbitrary e, Arbitrary a) => Arbitrary (Validation e a) where
 
 instance (Eq a, Eq e) => EqProp (Validation e a) where
   (=-=) = eq
+
+applyValidation :: Monoid e => Validation e (a -> b) -> Validation e a -> Validation e b
+applyValidation (Success' f) (Success' a) = Success' $ f a
+applyValidation (Success' _) (Failure' e) = Failure' e
+applyValidation (Failure' e) (Success' _) = Failure' e
+applyValidation (Failure' e) (Failure' e') = Failure' $ e <> e'
+
+-- Testing.
 
 myValidation :: Validation String (Integer, Integer, Integer)
 myValidation = undefined

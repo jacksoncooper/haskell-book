@@ -13,6 +13,14 @@ instance Functor List where
   fmap f (Cons a rest) = Cons (f a) (fmap f rest)
   fmap _ Nil = Nil 
 
+instance Arbitrary a => Arbitrary (List a) where
+  arbitrary = do
+    listOfA <- arbitrary
+    return $ listToVerboseList listOfA
+
+instance Eq a => EqProp (List a) where
+  (=-=) = eq
+
 listToVerboseList :: [a] -> List a
 listToVerboseList = foldr Cons Nil
 
@@ -53,14 +61,6 @@ instance Applicative List where
   --   implementation. So that's neat.
 
 -- Testing.
-
-instance Arbitrary a => Arbitrary (List a) where
-  arbitrary = do
-    listOfA <- arbitrary
-    return $ listToVerboseList listOfA
-
-instance Eq a => EqProp (List a) where
-  (=-=) = eq
 
 myList :: List (Integer, Integer, Integer)
 myList = undefined

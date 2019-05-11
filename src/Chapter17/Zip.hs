@@ -17,8 +17,6 @@ instance Applicative ZipList' where
   pure a = ZipList' $ repeat a
   (<*>) (ZipList' fs) (ZipList' xs) = ZipList' $ zipWith ($) fs xs
 
--- Testing.
-
 instance Arbitrary a => Arbitrary (ZipList' a) where
   arbitrary = do
     listOfA <- arbitrary
@@ -31,6 +29,8 @@ instance Eq a => EqProp (ZipList' a) where
             in take 3000 l
       ys' = let (ZipList' l) = ys
             in take 3000 l
+
+-- Testing.
 
 myZipList :: ZipList' (Integer, Integer, Integer)
 myZipList = undefined

@@ -15,10 +15,10 @@ instance Monoid a => Semigroup (ZipList a) where
 instance Monoid a => Monoid (ZipList a) where
   mempty = pure mempty
 
--- Testing.
-
 instance Eq a => EqProp (ZipList a) where
   (=-=) = eq
+
+-- Testing.
 
 myZipList :: ZipList (Sum Integer)
 myZipList = undefined
