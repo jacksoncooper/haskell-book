@@ -1,5 +1,7 @@
 module Chapter18.Notes where
 
+import Control.Monad (join)
+
 -- Sugar. Oh, honey honey. You are my candy girl...
 
 awkwardExchange :: IO ()
@@ -101,3 +103,12 @@ doSomething5 f g h n =
 
 -- ^ So, this compiles. I have no idea why. Is not '\a -> ...' part of the
 --   expression 'f n >>= ...'?
+
+-- "If you don’t believe us, try translating 'doSomething4' to Applicative: so
+--  no resorting to >>= or join."
+
+-- I did, had to use 'join' and add the Monad constraint:
+
+doSomething6 :: Monad f => (t -> f a) -> (a -> f b) -> (b -> f c) -> t -> f (a, b, c)
+-- doSomething6 f g h n = (\a -> (\b -> ((\c -> (a, b, c)) <$> h b) <$> g a)) <$> f n
+doSomething6 f g h n = join $ (\a -> join $ (\b -> (\c -> (a, b, c)) <$> h b) <$> g a) <$> f n
