@@ -11,7 +11,7 @@ data List a = Nil | Cons a (List a)
 
 instance Functor List where
   fmap f (Cons a rest) = Cons (f a) (fmap f rest)
-  fmap _ Nil = Nil 
+  fmap _ Nil = Nil
 
 instance Arbitrary a => Arbitrary (List a) where
   arbitrary = do

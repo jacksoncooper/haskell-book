@@ -47,7 +47,7 @@ instance (Semigroup a, Semigroup b) => Semigroup (Two a b) where
   (<>) (Two x y) (Two x' y') = Two (x <> x') (y <> y')
 
 instance (Monoid a, Monoid b) => Monoid (Two a b) where
-  mempty = Two mempty mempty  
+  mempty = Two mempty mempty
 
 instance (Arbitrary a, Arbitrary b) => Arbitrary (Two a b) where
   arbitrary = do
@@ -201,12 +201,12 @@ testSemigroups = hspec $ do
 
     it "Testing semigroupAssociativeProperty :: Trivial -> Trivial -> Trivial -> Bool." $ do
       property (semigroupAssociativeProperty :: Trivial -> Trivial -> Trivial -> Bool)
-    
+
     -- 2.
 
     it "Testing semigroupAssociativeProperty :: (Identity String) -> ... -> ... -> Bool." $ do
       property (semigroupAssociativeProperty :: (Identity String) -> (Identity String) -> (Identity String) -> Bool)
-    
+
     -- 3.
 
     it "Testing semigroupAssociativeProperty :: (Two String Any) -> ... -> ... -> Bool." $ do
