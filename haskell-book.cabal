@@ -18,6 +18,15 @@ library
   ghc-options:         -Wall
   hs-source-dirs:      src
   build-depends:       base >= 4.7 && < 5
+                     , bytestring
                      , checkers
+                     , hedis
                      , hspec
+                     , mtl
+                     , network-uri
+                     , random
                      , QuickCheck
+                     , scotty
+                     , semigroups
+                     , text
+                     , transformers

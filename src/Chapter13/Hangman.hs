@@ -1,3 +1,5 @@
+-- Page 503
+
 module Chapter13.Hangman where
 
 import Control.Monad (forever)
