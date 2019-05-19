@@ -26,8 +26,8 @@ instance Arbitrary a => Arbitrary (CountMe a) where
   arbitrary = CountMe <$> arbitrary <*> arbitrary
 
   -- ^ CountMe :: Integer -> a -> CountMe a
-  --   CountMe <$> arbitrary = Gen (CountMe Integer)
-  --   Gen (CountMe Integer) <*> arbitrary = Gen (CountMe Integer a)
+  --   CountMe <$> arbitrary :: Gen (CountMe Integer)
+  --   Gen (CountMe _) <*> arbitrary :: Gen (CountMe Integer a)
 
 instance Eq a => EqProp (CountMe a) where
   (=-=) = eq
