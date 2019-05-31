@@ -131,4 +131,4 @@ g i =
 h :: Integer -> Maybe String
 h i = Just $ "10191" ++ show i
 
--- doSomething4 f g h 2 = Just (2,3,"101913")
+-- doSomething4 f g h 2 = Just (2, 3, "101913")
