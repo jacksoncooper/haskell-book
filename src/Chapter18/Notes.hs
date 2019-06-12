@@ -64,7 +64,7 @@ doSomething1 f g h = do
   pure (a, b, c)
 
 doSomething2 :: Monad m => m a -> m b -> m c -> m (a, b, c)
-doSomething2 f g h = do
+doSomething2 f g h =
   f >>=
     \a ->
       g >>=
