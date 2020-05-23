@@ -2,7 +2,7 @@ name:                haskell-book
 version:             0.1.0.0
 -- synopsis:
 -- description:
-homepage:            https://github.com/jacksoncooper/learning-haskell
+homepage:            https://github.com/jacksoncooper/haskell-book
 -- license:
 -- license-file:
 author:              Jackson Cooper
@@ -25,9 +25,11 @@ library
                      , hspec
                      , mtl
                      , network-uri
-                     , random
                      , QuickCheck
+                     , random
                      , scotty
                      , semigroups
+                     , parsers
                      , text
                      , transformers
+                     , trifecta
