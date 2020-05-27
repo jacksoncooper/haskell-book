@@ -35,8 +35,7 @@ instance Monad m => Monad (MaybeT m) where
     -- ma :: m (Maybe a)
     -- f :: a -> MaybeT m b
     -- ((f <$>) <$>) f ma :: m (Maybe (MaybeT m b))
-    -- ((runMaybeT . f <$>) <$>) f ma :: m (Maybe (m b))
-    --                                      ^ This is the troublemaker.
+    -- ((runMaybeT . f <$>) <$>) f ma :: m (m (Maybe b))
 
     -- The inner bind has the following type:
 
