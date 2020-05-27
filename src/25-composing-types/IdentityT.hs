@@ -31,9 +31,17 @@ instance Monad Identity where
 --     (IdentityT ma) >>= f =
 --         IdentityT $ ma >>= runIdentityT . f
 
+-- The inner bind has the following type:
+
+-- (>>=) :: Monad m => m a -> (a -> m b) -> m b
+
+-- f :: IdentityT m a -> (a -> IdentityT m b) -> IdentityT m b
+-- (\a -> runIdentityT (f a)) :: a -> m b
+
 -- Alternatively:
 
 instance Monad m => Monad (IdentityT m) where
     return = pure
+
     (IdentityT ma) >>= f =
         IdentityT $ ma >>= (\a -> runIdentityT (f a))
