@@ -2,6 +2,8 @@
 
 {-# LANGUAGE InstanceSigs #-}
 
+import Control.Monad.Trans.Class
+
 newtype StateT s m a =
     StateT { runStateT :: s -> m (a, s) }
 
@@ -63,3 +65,14 @@ instance Monad m => Monad (StateT s m) where
         StateT $ \s ->
             f s >>= \(a, s') ->
                 runStateT (g a) s'
+
+-- Page 1016
+
+-- 2.
+
+-- lift :: Monad m => m a -> t m a
+--      :: Monad m => m a -> StateT s m a
+--      :: Monad m => m a -> (s -> m (a, s))
+
+instance MonadTrans (StateT s) where
+    lift m = StateT $ \s -> (\a -> (a, s)) <$> m

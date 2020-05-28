@@ -2,6 +2,8 @@
 
 {-# LANGUAGE InstanceSigs #-}
 
+import Control.Monad.Trans.Class
+
 newtype EitherT e m a =
     EitherT { runEitherT :: m (Either e a) }
 
@@ -61,3 +63,14 @@ eitherT f g t =
         case e of
             Left a  -> f a
             Right b -> g b
+
+-- Page 1016
+
+-- 1.
+
+-- lift :: Monad m => m a -> t m a
+--      :: Monad m => m a -> EitherT e m a
+--      :: Monad m => m a -> m (Either e a)
+
+instance MonadTrans (EitherT e) where
+    lift m = EitherT $ Right <$> m
