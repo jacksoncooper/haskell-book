@@ -2,6 +2,9 @@
 
 {-# LANGUAGE InstanceSigs #-}
 
+import Control.Monad.IO.Class
+import Control.Monad.Trans.Class
+
 newtype ReaderT r m a =
     ReaderT { runReaderT :: r -> m a }
 
@@ -38,3 +41,15 @@ instance Monad m => Monad (ReaderT r m) where
                 runReaderT (f a) r
 
     -- ReaderT r m a :: (->) r (m a)
+
+-- Page 1016
+
+instance MonadTrans (ReaderT r) where
+    lift = ReaderT . const
+
+-- Page 1022
+
+-- 2.
+
+instance MonadIO m => MonadIO (ReaderT r m) where
+    liftIO = lift . liftIO

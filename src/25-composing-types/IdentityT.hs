@@ -1,3 +1,5 @@
+import Control.Monad.IO.Class
+
 -- Page 974
 
 newtype Identity a =
@@ -45,3 +47,8 @@ instance Monad m => Monad (IdentityT m) where
 
     (IdentityT ma) >>= f =
         IdentityT $ ma >>= (\a -> runIdentityT (f a))
+
+-- Page 1021
+
+instance MonadIO m => MonadIO (IdentityT m) where
+    liftIO = IdentityT . liftIO

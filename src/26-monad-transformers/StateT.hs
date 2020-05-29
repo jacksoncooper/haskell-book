@@ -2,6 +2,7 @@
 
 {-# LANGUAGE InstanceSigs #-}
 
+import Control.Monad.IO.Class
 import Control.Monad.Trans.Class
 
 newtype StateT s m a =
@@ -76,3 +77,10 @@ instance Monad m => Monad (StateT s m) where
 
 instance MonadTrans (StateT s) where
     lift m = StateT $ \s -> (\a -> (a, s)) <$> m
+
+-- Page 1022
+
+-- 3.
+
+instance MonadIO m => MonadIO (StateT s m) where
+    liftIO = liftIO . liftIO
