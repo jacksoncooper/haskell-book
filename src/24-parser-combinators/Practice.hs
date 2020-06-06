@@ -35,6 +35,11 @@ oneTwoExhaust = oneTwo >> eof
 
 -- oneTwoThree =
 
+-- 3.
+
+string' :: CharParsing m => String -> m String
+string' = traverse char
+
 main = do
   printNewline "stop:"
   testParse stop
