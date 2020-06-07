@@ -34,9 +34,11 @@ parseDecimal = do
   return . toRational $
     wholeNum + fractionalNum * fractionalPower
 
-parseDecimalOrFraction :: Parser Rational
-parseDecimalOrFraction =
+parseFractionOrDecimal :: Parser Rational
+parseFractionOrDecimal =
   try parseFraction <|> parseDecimal
+
+-- ^ I'm not sure why 'try' is necessary here.
 
 main :: IO ()
 main = do
