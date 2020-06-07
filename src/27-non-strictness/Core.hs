@@ -68,4 +68,3 @@ discriminatory b =
 -- 7. foldr (flip const) 'z' ['a'..'e']
 --    'z'
 --    *not bottom*
-

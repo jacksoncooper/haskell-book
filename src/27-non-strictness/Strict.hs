@@ -25,4 +25,3 @@ threeElements = Cons 2 twoEls
 
 oneElT :: List Int
 oneElT = sTake 1 threeElements
-

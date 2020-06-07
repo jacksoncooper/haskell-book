@@ -27,4 +27,3 @@ main = defaultMain
   , bench "index list maybe index 9999"
     $ whnf (myList !?) 9998
   ]
-

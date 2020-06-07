@@ -26,4 +26,3 @@ multiError n =
       Left (MyException StackOverflow)
     _ ->
       Right n
-

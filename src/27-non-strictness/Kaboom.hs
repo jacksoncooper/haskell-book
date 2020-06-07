@@ -33,4 +33,3 @@ wc x z =
 doSequence :: IO ()
 doSequence =
     putStrLn $ "foldr wc 'z' ['a'..'e']: " ++ [foldr wc 'z' ['a'..'e']]
-
